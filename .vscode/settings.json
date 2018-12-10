@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        "BUILD": "true",
+        "__pycache__": "true"
+    }
+}

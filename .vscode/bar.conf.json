@@ -1,0 +1,6 @@
+{
+    "commands":{
+        "build":"mbed compile -m K64F -t GCC_ARM -v",
+        "run":"mbed compile -m K64F -t GCC_ARM -v -f"
+    }
+}
