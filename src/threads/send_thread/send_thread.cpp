@@ -30,12 +30,7 @@ void send_thread(EthernetInterface* ethernet)
             buffer[5] = (last_read_1_int & 0x0F0) >> 4;
             buffer[6] = (last_read_1_int & 0x00F);
 
-            uint32_t last_read_2_int = ((uint32_t) (get_sensor_read(2)*1000));
-            buffer[7] = (last_read_2_int & 0xF00) >> 8;
-            buffer[8] = (last_read_2_int & 0x0F0) >> 4;
-            buffer[9] = (last_read_2_int & 0x00F);
-
-            buffer[10] = 0xFF;
+            buffer[7] = 0xFF;
 
             socket.send(buffer, sizeof(buffer));
 

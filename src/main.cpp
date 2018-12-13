@@ -4,6 +4,8 @@
 #include "EthernetInterface.h"
 #include "sensors_thread.h"
 #include "send_thread.h"
+#include "motor_thread.h"
+#include "receive_thread.h"
 #include "serial_pc.h"
 
 #define CLIENT_IP   "192.168.0.25"
@@ -16,13 +18,16 @@ void init_ethernet(void);
 Thread thread_1;
 Thread thread_2;
 Thread thread_3;
+Thread thread_4;
 
 int main()
 {
     init_serial();
     init_ethernet();
     thread_1.start(sensors_thread);
+    thread_3.start(motor_thread);
     thread_2.start(callback(send_thread, &ethernet));
+    thread_4.start(callback(receive_thread, &ethernet));
 }
 
 void init_ethernet()

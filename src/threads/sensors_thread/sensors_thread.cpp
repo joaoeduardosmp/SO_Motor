@@ -8,19 +8,18 @@ static float last_read_0;
 
 static float last_read_1;
 
-static float last_read_2;
-
 void sensors_thread(void)
 {
     AnalogIn AnIn0(A0);
-    AnalogIn AnIn1(A3);
-    AnalogIn AnIn2(A2);
+    AnalogIn AnIn1(A1);
+    PwmOut pwm(D13);
+    pwm.period(4.0f);
+    pwm.write(0.5f);
     while(1)
     {
         sensors_mutex.lock();
         last_read_0 = AnIn0.read();
         last_read_1 = AnIn1.read();
-        last_read_2 = AnIn2.read();
         sensors_mutex.unlock();
     }
 }
@@ -43,8 +42,6 @@ float get_sensor_read(uint8_t read_num)
             return last_read_0;
         case 1:
             return last_read_1;
-        case 2:
-            return last_read_2;
         default:
             break;
     }
